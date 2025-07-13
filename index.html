@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shiro garden</title>
-    <style>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -13,16 +13,58 @@
         
         body {
             height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 320px;
+            height: 100vh;
+            background-color: #1a1a1a;
             background-image: url('left_block.jpeg');
             background-size: cover;
-            background-position: left;
+            background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .sidebar-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px 25px;
+            color: white;
+        }
+        
+        .main-content {
+            flex: 1;
+            height: 100vh;
+            background-color: #f5f5f5;
+            overflow-y: auto;
         }
     </style>
-     
 </head>
 <body>
-    <!-- Your content will go here in the next steps -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <!-- Your menu will go here in the next steps -->
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <!-- Your main content will go here in the next steps -->
+    </div>
 </body>
 </html>
