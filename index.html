@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shiro garden</title>
-   <style>
+    <title>My Web Page</title>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -48,17 +48,43 @@
             color: white;
         }
         
-        .main-content {
-            flex: 1;
-            height: 100vh;
-            background-color: #f5f5f5;
-            overflow-y: auto;
+        .site-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
         }
- .sidebar-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px 25px;
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            margin-bottom: 20px;
+        }
+        
+        .menu-link {
             color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+        
+        .menu-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .main-content {
@@ -103,9 +129,10 @@
         .carousel-slide {
             min-width: 100%;
             height: 100%;
-            background-size: cover;
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
+            background-color: #f5f5f5;
         }
         
         .carousel-nav {
@@ -192,7 +219,23 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-content">
-            <!-- Your menu will go here in the next steps -->
+            <h1 class="site-title">Thien An Nguyen</h1>
+            <nav>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link active">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="work-projects.html" class="menu-link">Work Projects</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="writings.html" class="menu-link">Writings</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="hobbies.html" class="menu-link">Hobbies</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     
@@ -202,7 +245,7 @@
             <div class="carousel-container">
                 <div class="carousel" id="carousel1">
                     <div class="carousel-slide" style="background-image: url('film_chiangmai1');"></div>
-                    <div class="carousel-slide" style="background-image: url('film_chiangmai2');"></div>
+                    <div class="carousel-slide" style="background-image: url('https://your-username.github.io/your-repository/section1-img2.jpg');"></div>
                     <div class="carousel-slide" style="background-image: url('https://your-username.github.io/your-repository/section1-img3.jpg');"></div>
                 </div>
                 <button class="carousel-nav carousel-prev" onclick="event.stopPropagation(); prevSlide(1)">❮</button>
