@@ -79,7 +79,7 @@
         }
         
         .menu-link:hover {
-            background: rgb(199, 229, 200, 0.1);
+            background: rgba(199, 229, 200, 0.1);
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateX(5px);
         }
@@ -90,17 +90,34 @@
         }
         
         .main-content {
-            width: 320px;
+            flex: 1;
             height: 100vh;
-            background-color: #1a1a1a;
             background-image: url('garden.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-y: auto;
             position: relative;
-            overflow-y: auto;
-            height: 100vh;
-            overflow-y: auto;
+        }
+        
+        /* Optional: Add overlay for better text readability */
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        /* Content area with proper z-index */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
         }
     </style>
 </head>
@@ -111,19 +128,25 @@
             <nav>
                 <ul class="menu">
                     <li class="menu-item">
-                        <h2 href="index.html" class="menu-link active">Home</h2>
+                        <a href="index.html" class="menu-link active">Home</a>
                     </li>
                     <li class="menu-item">
-                        <h2 href="work-projects.html" class="menu-link">Work Projects</h2>
+                        <a href="work-projects.html" class="menu-link">Work Projects</a>
                     </li>
                     <li class="menu-item">
-                        <h2 href="writings.html" class="menu-link">Opinions</h2>
+                        <a href="writings.html" class="menu-link">Opinions</a>
                     </li>
                     <li class="menu-item">
-                        <h2 href="hobbies.html" class="menu-link">Hobbies</h2>
+                        <a href="hobbies.html" class="menu-link">Hobbies</a>
                     </li>
                 </ul>
             </nav>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="content-wrapper">
+            <!-- Your main content goes here -->
         </div>
     </div>
 </body>
