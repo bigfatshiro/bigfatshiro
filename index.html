@@ -16,81 +16,13 @@
         body {
             height: 100vh;
             font-family: "Jersey 15", sans-serif;
-            display: flex;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
         }
         
-        .sidebar {
-            width: 320px;
-            height: 100vh;
-            background-color: #1a1a1a;
-            background-image: url('left_block.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow-y: auto;
-        }
-        
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0);
-            z-index: 1;
-        }
-        
-        .sidebar-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px 25px;
-            color: white;
-        }
-        
-        .site-title {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .menu {
-            list-style: none;
-        }
-        
-        .menu-item {
-            margin-bottom: 20px;
-        }
-        
-        .menu-link {
-            color: green;
-            text-decoration: none;
-            font-size: 25px;
-            font-weight: 500;
-            display: block;
-            padding: 15px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .menu-link:hover {
-            background: rgba(199, 229, 200, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateX(5px);
-        }
-        
-        .menu-link.active {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        
-       .main-content {
-            flex: 1;
+        .main-content {
+            width: 100vw;
             height: 100vh;
             background-color: #000;
             overflow-y: auto;
@@ -120,21 +52,21 @@
             animation: pacman-mouth 0.5s infinite;
         }
         
-        /* Pacman Movement Path */
+        /* Pacman Movement Path - Counter-clockwise */
         @keyframes pacman-move {
             0% { 
                 left: -50px; 
                 top: 20%; 
-                transform: rotate(0deg);
+                transform: rotate(180deg);
             }
             25% { 
-                left: calc(100% - 40px); 
-                top: 20%; 
-                transform: rotate(0deg);
+                left: -50px; 
+                top: 80%; 
+                transform: rotate(180deg);
             }
             25.1% { 
-                left: calc(100% - 40px); 
-                top: 20%; 
+                left: -50px; 
+                top: 80%; 
                 transform: rotate(90deg);
             }
             50% { 
@@ -145,16 +77,16 @@
             50.1% { 
                 left: calc(100% - 40px); 
                 top: 80%; 
-                transform: rotate(180deg);
+                transform: rotate(0deg);
             }
             75% { 
-                left: -50px; 
-                top: 80%; 
-                transform: rotate(180deg);
+                left: calc(100% - 40px); 
+                top: 20%; 
+                transform: rotate(0deg);
             }
             75.1% { 
-                left: -50px; 
-                top: 80%; 
+                left: calc(100% - 40px); 
+                top: 20%; 
                 transform: rotate(270deg);
             }
             100% { 
@@ -191,32 +123,127 @@
             6.67%, 93.33% { opacity: 0; }
         }
         
-        .dot:nth-child(2) { left: 10%; top: 20%; animation-delay: -1s; }
-        .dot:nth-child(3) { left: 20%; top: 20%; animation-delay: -2s; }
-        .dot:nth-child(4) { left: 30%; top: 20%; animation-delay: -3s; }
-        .dot:nth-child(5) { left: 40%; top: 20%; animation-delay: -4s; }
-        .dot:nth-child(6) { left: 50%; top: 20%; animation-delay: -5s; }
-        .dot:nth-child(7) { left: 60%; top: 20%; animation-delay: -6s; }
-        .dot:nth-child(8) { left: 70%; top: 20%; animation-delay: -7s; }
-        .dot:nth-child(9) { left: 80%; top: 20%; animation-delay: -8s; }
-        .dot:nth-child(10) { left: 90%; top: 30%; animation-delay: -9s; }
-        .dot:nth-child(11) { left: 90%; top: 40%; animation-delay: -10s; }
-        .dot:nth-child(12) { left: 90%; top: 50%; animation-delay: -11s; }
-        .dot:nth-child(13) { left: 90%; top: 60%; animation-delay: -12s; }
+        .dot:nth-child(2) { left: 10%; top: 30%; animation-delay: -1s; }
+        .dot:nth-child(3) { left: 10%; top: 40%; animation-delay: -2s; }
+        .dot:nth-child(4) { left: 10%; top: 50%; animation-delay: -3s; }
+        .dot:nth-child(5) { left: 10%; top: 60%; animation-delay: -4s; }
+        .dot:nth-child(6) { left: 10%; top: 70%; animation-delay: -5s; }
+        .dot:nth-child(7) { left: 20%; top: 80%; animation-delay: -6s; }
+        .dot:nth-child(8) { left: 30%; top: 80%; animation-delay: -7s; }
+        .dot:nth-child(9) { left: 40%; top: 80%; animation-delay: -8s; }
+        .dot:nth-child(10) { left: 50%; top: 80%; animation-delay: -9s; }
+        .dot:nth-child(11) { left: 60%; top: 80%; animation-delay: -10s; }
+        .dot:nth-child(12) { left: 70%; top: 80%; animation-delay: -11s; }
+        .dot:nth-child(13) { left: 80%; top: 80%; animation-delay: -12s; }
         .dot:nth-child(14) { left: 90%; top: 70%; animation-delay: -13s; }
-        .dot:nth-child(15) { left: 80%; top: 80%; animation-delay: -14s; }
-        .dot:nth-child(16) { left: 70%; top: 80%; animation-delay: -15s; }
-        .dot:nth-child(17) { left: 60%; top: 80%; animation-delay: -1.5s; }
-        .dot:nth-child(18) { left: 50%; top: 80%; animation-delay: -2.5s; }
-        .dot:nth-child(19) { left: 40%; top: 80%; animation-delay: -3.5s; }
-        .dot:nth-child(20) { left: 30%; top: 80%; animation-delay: -4.5s; }
-        .dot:nth-child(21) { left: 20%; top: 80%; animation-delay: -5.5s; }
-        .dot:nth-child(22) { left: 10%; top: 80%; animation-delay: -6.5s; }
-        .dot:nth-child(23) { left: 10%; top: 70%; animation-delay: -7.5s; }
-        .dot:nth-child(24) { left: 10%; top: 60%; animation-delay: -8.5s; }
-        .dot:nth-child(25) { left: 10%; top: 50%; animation-delay: -9.5s; }
-        .dot:nth-child(26) { left: 10%; top: 40%; animation-delay: -10.5s; }
+        .dot:nth-child(15) { left: 90%; top: 60%; animation-delay: -14s; }
+        .dot:nth-child(16) { left: 90%; top: 50%; animation-delay: -15s; }
+        .dot:nth-child(17) { left: 90%; top: 40%; animation-delay: -1.5s; }
+        .dot:nth-child(18) { left: 90%; top: 30%; animation-delay: -2.5s; }
+        .dot:nth-child(19) { left: 80%; top: 20%; animation-delay: -3.5s; }
+        .dot:nth-child(20) { left: 70%; top: 20%; animation-delay: -4.5s; }
+        .dot:nth-child(21) { left: 60%; top: 20%; animation-delay: -5.5s; }
+        .dot:nth-child(22) { left: 50%; top: 20%; animation-delay: -6.5s; }
+        .dot:nth-child(23) { left: 40%; top: 20%; animation-delay: -7.5s; }
+        .dot:nth-child(24) { left: 30%; top: 20%; animation-delay: -8.5s; }
+        .dot:nth-child(25) { left: 20%; top: 20%; animation-delay: -9.5s; }
+        .dot:nth-child(26) { left: 10%; top: 20%; animation-delay: -10.5s; }
         .dot:nth-child(27) { left: 10%; top: 30%; animation-delay: -11.5s; }
+        
+        /* Ghost Navigation Menu - Multiple Position Options */
+        .ghost-menu {
+            position: fixed;
+            /* OPTION 1: Center of page (current) */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            /* OPTION 2: Bottom of page - uncomment these 3 lines and comment the 3 above */
+            /* bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%); */
+            
+            /* OPTION 3: Top of page - uncomment these 3 lines and comment the first 3 */
+            /* top: 40px;
+            left: 50%;
+            transform: translateX(-50%); */
+            
+            /* OPTION 4: Lower center (75% down) - uncomment these 3 lines and comment the first 3 */
+            /* top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            
+            /* OPTION 5: Upper center (25% down) - uncomment these 3 lines and comment the first 3 */
+            /* top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            
+            display: flex;
+            gap: 40px;
+            z-index: 15;
+        }
+        
+        .ghost-nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .ghost-nav:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ghost-square {
+            width: 120px;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            border: 4px solid #ffff00;
+            box-shadow: 0 0 25px rgba(255, 255, 0, 0.6);
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .ghost-square:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 0, 0.9);
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+        
+        /* Individual ghost colors */
+        .ghost-square.red { 
+            background-color: #ff6b6b; 
+            background-image: url('https://your-username.github.io/your-repository/red-ghost.jpg');
+        }
+        .ghost-square.pink { 
+            background-color: #ff69b4; 
+            background-image: url('https://your-username.github.io/your-repository/pink-ghost.jpg');
+        }
+        .ghost-square.cyan { 
+            background-color: #00ffff; 
+            background-image: url('https://your-username.github.io/your-repository/cyan-ghost.jpg');
+        }
+        .ghost-square.orange { 
+            background-color: #ffa500; 
+            background-image: url('https://your-username.github.io/your-repository/orange-ghost.jpg');
+        }
+        
+        .ghost-label {
+            color: #ffff00;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            transition: color 0.3s ease;
+        }
+        
+        .ghost-nav:hover .ghost-label {
+            color: #fff;
+        }
         
         /* Optional: Add overlay for better text readability */
         .main-content::before {
@@ -298,28 +325,6 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-content">
-            <h1 class="site-title">Thien An Nguyen</h1>
-            <nav>
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a href="index.html" class="menu-link active">Home</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="work-projects.html" class="menu-link">Work Projects</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="writings.html" class="menu-link">Opinions</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="hobbies.html" class="menu-link">Hobbies</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    
     <div class="main-content">
         <!-- Pacman Animation -->
         <div class="pacman"></div>
@@ -362,6 +367,29 @@
             <div class="text-with-light-bg">
                 <h3>Important Content</h3>
                 <p>Use this style for important text that needs maximum readability.</p>
+            </div>
+        </div>
+        
+        <!-- Ghost Navigation Menu -->
+        <div class="ghost-menu">
+            <div class="ghost-nav" onclick="window.location.href='work-projects.html'">
+                <div class="ghost-square red"></div>
+                <div class="ghost-label">Work Projects</div>
+            </div>
+            
+            <div class="ghost-nav" onclick="window.location.href='writings.html'">
+                <div class="ghost-square pink"></div>
+                <div class="ghost-label">Opinions</div>
+            </div>
+            
+            <div class="ghost-nav" onclick="window.location.href='hobbies.html'">
+                <div class="ghost-square cyan"></div>
+                <div class="ghost-label">Hobbies</div>
+            </div>
+            
+            <div class="ghost-nav" onclick="window.location.href='about.html'">
+                <div class="ghost-square orange"></div>
+                <div class="ghost-label">About Me</div>
             </div>
         </div>
     </div>
