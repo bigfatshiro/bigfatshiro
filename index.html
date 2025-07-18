@@ -89,17 +89,134 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
         
-        .main-content {
+       .main-content {
             flex: 1;
             height: 100vh;
-            background-image: url('pixel_art_large.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: #000;
             overflow-y: auto;
             position: relative;
         }
+        
+        /* Pacman Animation */
+        .pacman {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffff00;
+            animation: pacman-move 15s linear infinite, pacman-chomp 0.5s infinite;
+            z-index: 1;
+        }
+        
+        .pacman::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 20px solid #000;
+            border-right: 20px solid transparent;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            animation: pacman-mouth 0.5s infinite;
+        }
+        
+        /* Pacman Movement Path */
+        @keyframes pacman-move {
+            0% { 
+                left: -50px; 
+                top: 20%; 
+                transform: rotate(0deg);
+            }
+            25% { 
+                left: calc(100% - 40px); 
+                top: 20%; 
+                transform: rotate(0deg);
+            }
+            25.1% { 
+                left: calc(100% - 40px); 
+                top: 20%; 
+                transform: rotate(90deg);
+            }
+            50% { 
+                left: calc(100% - 40px); 
+                top: 80%; 
+                transform: rotate(90deg);
+            }
+            50.1% { 
+                left: calc(100% - 40px); 
+                top: 80%; 
+                transform: rotate(180deg);
+            }
+            75% { 
+                left: -50px; 
+                top: 80%; 
+                transform: rotate(180deg);
+            }
+            75.1% { 
+                left: -50px; 
+                top: 80%; 
+                transform: rotate(270deg);
+            }
+            100% { 
+                left: -50px; 
+                top: 20%; 
+                transform: rotate(270deg);
+            }
+        }
+        
+        /* Pacman Mouth Animation */
+        @keyframes pacman-mouth {
+            0%, 100% {
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+            }
+            50% {
+                border-top: 20px solid transparent;
+                border-bottom: 20px solid transparent;
+            }
+        }
+        
+        /* Dots for Pacman to "eat" */
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ffff00;
+            border-radius: 50%;
+            animation: dot-fade 15s linear infinite;
+        }
+        
+        @keyframes dot-fade {
+            0%, 100% { opacity: 1; }
+            6.67%, 93.33% { opacity: 0; }
+        }
+        
+        .dot:nth-child(2) { left: 10%; top: 20%; animation-delay: -1s; }
+        .dot:nth-child(3) { left: 20%; top: 20%; animation-delay: -2s; }
+        .dot:nth-child(4) { left: 30%; top: 20%; animation-delay: -3s; }
+        .dot:nth-child(5) { left: 40%; top: 20%; animation-delay: -4s; }
+        .dot:nth-child(6) { left: 50%; top: 20%; animation-delay: -5s; }
+        .dot:nth-child(7) { left: 60%; top: 20%; animation-delay: -6s; }
+        .dot:nth-child(8) { left: 70%; top: 20%; animation-delay: -7s; }
+        .dot:nth-child(9) { left: 80%; top: 20%; animation-delay: -8s; }
+        .dot:nth-child(10) { left: 90%; top: 30%; animation-delay: -9s; }
+        .dot:nth-child(11) { left: 90%; top: 40%; animation-delay: -10s; }
+        .dot:nth-child(12) { left: 90%; top: 50%; animation-delay: -11s; }
+        .dot:nth-child(13) { left: 90%; top: 60%; animation-delay: -12s; }
+        .dot:nth-child(14) { left: 90%; top: 70%; animation-delay: -13s; }
+        .dot:nth-child(15) { left: 80%; top: 80%; animation-delay: -14s; }
+        .dot:nth-child(16) { left: 70%; top: 80%; animation-delay: -15s; }
+        .dot:nth-child(17) { left: 60%; top: 80%; animation-delay: -1.5s; }
+        .dot:nth-child(18) { left: 50%; top: 80%; animation-delay: -2.5s; }
+        .dot:nth-child(19) { left: 40%; top: 80%; animation-delay: -3.5s; }
+        .dot:nth-child(20) { left: 30%; top: 80%; animation-delay: -4.5s; }
+        .dot:nth-child(21) { left: 20%; top: 80%; animation-delay: -5.5s; }
+        .dot:nth-child(22) { left: 10%; top: 80%; animation-delay: -6.5s; }
+        .dot:nth-child(23) { left: 10%; top: 70%; animation-delay: -7.5s; }
+        .dot:nth-child(24) { left: 10%; top: 60%; animation-delay: -8.5s; }
+        .dot:nth-child(25) { left: 10%; top: 50%; animation-delay: -9.5s; }
+        .dot:nth-child(26) { left: 10%; top: 40%; animation-delay: -10.5s; }
+        .dot:nth-child(27) { left: 10%; top: 30%; animation-delay: -11.5s; }
         
         /* Optional: Add overlay for better text readability */
         .main-content::before {
@@ -109,15 +226,74 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.3);
             z-index: 1;
+            pointer-events: none;
         }
         
         /* Content area with proper z-index */
         .content-wrapper {
             position: relative;
-            z-index: 2;
+            z-index: 10;
             padding: 40px;
+        }
+        
+        /* Text Color Classes */
+        .text-white { color: white; }
+        .text-black { color: black; }
+        .text-gray { color: #666; }
+        .text-light-gray { color: #999; }
+        .text-dark-gray { color: #333; }
+        
+        /* Color Variations */
+        .text-red { color: #e74c3c; }
+        .text-blue { color: #3498db; }
+        .text-green { color: #27ae60; }
+        .text-purple { color: #9b59b6; }
+        .text-orange { color: #f39c12; }
+        .text-pink { color: #e91e63; }
+        .text-yellow { color: #f1c40f; }
+        .text-teal { color: #1abc9c; }
+        
+        /* Custom Green Shades (matching your menu) */
+        .text-light-green { color: #2ecc71; }
+        .text-forest-green { color: #27ae60; }
+        .text-dark-green { color: #1e8449; }
+        
+        /* Text with Background for Readability */
+        .text-with-bg {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .text-with-light-bg {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            color: #333;
+        }
+        
+        /* Example Text Styles */
+        .title-style {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle-style {
+            font-size: 24px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        
+        .body-style {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -145,8 +321,48 @@
     </div>
     
     <div class="main-content">
+        <!-- Pacman Animation -->
+        <div class="pacman"></div>
+        
+        <!-- Dots for Pacman to eat -->
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        
         <div class="content-wrapper">
-            <!-- Your main content goes here -->
+            <!-- Example text with good contrast on black background -->
+            <h1 class="text-white title-style">Welcome to My Site</h1>
+            <h2 class="text-light-green subtitle-style">Watch Pacman run around!</h2>
+            <p class="text-white">Your content goes here. The text is positioned above the Pacman animation.</p>
+            
+            <!-- Text with background for extra readability -->
+            <div class="text-with-light-bg">
+                <h3>Important Content</h3>
+                <p>Use this style for important text that needs maximum readability.</p>
+            </div>
         </div>
     </div>
 </body>
