@@ -60,167 +60,63 @@
             transform: translateY(-2px);
         }
         
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
+        <div class="photo-section">
             margin-bottom: 40px;
-        }
-        
-        .profile-section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #ffa500;
             text-align: center;
         }
         
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+        .hero-photo {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
             background: rgba(255, 165, 0, 0.2);
             border: 4px solid #ffa500;
-            margin: 0 auto 20px;
+            border-radius: 15px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
+            background-image: url('000043.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
-        .profile-name {
-            font-size: 32px;
-            color: #ffa500;
-            margin-bottom: 10px;
-        }
-        
-        .profile-role {
-            font-size: 20px;
-            color: #ffff00;
-            margin-bottom: 20px;
-        }
-        
-        .contact-info {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        
-        .contact-info h3 {
-            color: #ffa500;
-            margin-bottom: 15px;
-        }
-        
-        .contact-item {
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-        
-        .main-content {
+        .content-box {
             background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
+            padding: 40px;
             border-radius: 15px;
             border: 2px solid #ffa500;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 28px;
-            color: #ffa500;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #ffff00;
-            padding-bottom: 10px;
-        }
-        
-        .section-content {
+        .text-input {
+            width: 100%;
+            min-height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffff00;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            font-family: "Jersey 15", sans-serif;
             font-size: 18px;
             line-height: 1.6;
-            margin-bottom: 20px;
+            resize: vertical;
         }
         
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .text-input:focus {
+            outline: none;
+            border-color: #ffa500;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
         }
         
-        .skill-category {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #ffff00;
-        }
-        
-        .skill-category h4 {
-            color: #ffff00;
+        .input-label {
+            color: #ffa500;
+            font-size: 24px;
             margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .skill-list li::before {
-            content: "★";
-            color: #ffa500;
-            position: absolute;
-            left: 0;
-        }
-        
-        .timeline {
-            border-left: 3px solid #ffa500;
-            padding-left: 30px;
-            margin-top: 20px;
-        }
-        
-        .timeline-item {
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .timeline-item::before {
-            content: "";
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ffa500;
-            position: absolute;
-            left: -36px;
-            top: 5px;
-        }
-        
-        .timeline-date {
-            color: #ffff00;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .timeline-title {
-            color: #ffa500;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-description {
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 768px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
+            display: block;
         }
     </style>
 </head>
@@ -228,106 +124,18 @@
     <div class="container">
         <div class="header">
             <h1 class="page-title">🟠 About Me</h1>
-            <p class="subtitle">Get to know me better</p>
+            <p class="subtitle">You don't know me?</p>
             <a href="index.html" class="back-button">← Back to Home</a>
         </div>
         
-        <div class="about-content">
-            <div class="profile-section">
-                <div class="profile-image">📷</div>
-                <h2 class="profile-name">Your Name</h2>
-                <p class="profile-role">Your Title/Role</p>
-                <p>Brief tagline or description about yourself</p>
-                
-                <div class="contact-info">
-                    <h3>Contact Info</h3>
-                    <div class="contact-item">📧 your.email@example.com</div>
-                    <div class="contact-item">📱 Your phone number</div>
-                    <div class="contact-item">📍 Your location</div>
-                    <div class="contact-item">🔗 LinkedIn/Portfolio</div>
-                </div>
-            </div>
-            
-            <div class="main-content">
-                <div class="section">
-                    <h2 class="section-title">About Me</h2>
-                    <div class="section-content">
-                        <p>
-                            Write a compelling introduction about yourself here. Share your background, 
-                            what drives you, and what you're passionate about. This is your chance to 
-                            tell your story in your own words.
-                        </p>
-                        <p>
-                            Add more paragraphs as needed to give visitors a good sense of who you are, 
-                            what you value, and what makes you unique. Keep it authentic and engaging.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="section">
-                    <h2 class="section-title">Skills & Expertise</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h4>Technical Skills</h4>
-                            <ul class="skill-list">
-                                <li>Programming languages you know</li>
-                                <li>Frameworks and tools</li>
-                                <li>Software proficiency</li>
-                                <li>Technical certifications</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Creative Skills</h4>
-                            <ul class="skill-list">
-                                <li>Design abilities</li>
-                                <li>Creative software</li>
-                                <li>Artistic talents</li>
-                                <li>Content creation</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Soft Skills</h4>
-                            <ul class="skill-list">
-                                <li>Communication</li>
-                                <li>Leadership</li>
-                                <li>Problem-solving</li>
-                                <li>Team collaboration</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="section">
-                    <h2 class="section-title">Experience & Education</h2>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2020 - Present</div>
-                            <div class="timeline-title">Current Position</div>
-                            <div class="timeline-description">
-                                Description of your current role, responsibilities, and achievements.
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-date">2018 - 2020</div>
-                            <div class="timeline-title">Previous Experience</div>
-                            <div class="timeline-description">
-                                Details about previous work experience or significant projects.
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-date">2014 - 2018</div>
-                            <div class="timeline-title">Education</div>
-                            <div class="timeline-description">
-                                Your educational background, degree, school, and relevant coursework.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="photo-section">
+            <div class="hero-photo">📷</div>
+        </div>
+        
+        <div class="content-box">
+            <label class="input-label">About Me</label>
+            <textarea class="text-input" placeholder="I just want to have more cool friends. So I'm trying to be one. By making this site.">
+            </textarea>
         </div>
     </div>
 </body>
