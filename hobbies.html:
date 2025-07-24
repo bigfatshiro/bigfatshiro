@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies - shiro garden🌱</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Jersey 15", sans-serif;
+            background-color: #000;
+            color: white;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title {
+            font-size: 48px;
+            color: #00ffff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: #ffff00;
+            margin-bottom: 30px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ffff00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .hobby-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            transition: transform 0.3s ease;
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hobby-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .hobby-title {
+            font-size: 28px;
+            color: #00ffff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .hobby-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .hobby-details {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffff00;
+        }
+        
+        .hobby-details h4 {
+            color: #ffff00;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .hobby-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .hobby-details li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .hobby-details li::before {
+            content: "▸";
+            color: #00ffff;
+            position: absolute;
+            left: 0;
+        }
+        
+        .gallery-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-size: 32px;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-placeholder {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px dashed #00ffff;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">🔵 Hobbies & Interests</h1>
+            <p class="subtitle">Things I love to do in my free time</p>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+        
+        <div class="hobbies-grid">
+            <div class="hobby-card">
+                <div class="hobby-icon">🎮</div>
+                <h2 class="hobby-title">Gaming</h2>
+                <p class="hobby-description">
+                    Love playing various types of games, from retro arcade games to modern titles.
+                </p>
+                <div class="hobby-details">
+                    <h4>Current Favorites:</h4>
+                    <ul>
+                        <li>Favorite game genre or title</li>
+                        <li>Platform you prefer</li>
+                        <li>Recent gaming achievements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">📚</div>
+                <h2 class="hobby-title">Reading</h2>
+                <p class="hobby-description">
+                    Always exploring new books and expanding my knowledge across different topics.
+                </p>
+                <div class="hobby-details">
+                    <h4>Recent Reads:</h4>
+                    <ul>
+                        <li>Book title or author you enjoyed</li>
+                        <li>Favorite genre</li>
+                        <li>Currently reading</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🎵</div>
+                <h2 class="hobby-title">Music</h2>
+                <p class="hobby-description">
+                    Music is a big part of my life, whether it's listening, creating, or discovering new artists.
+                </p>
+                <div class="hobby-details">
+                    <h4>Music Interests:</h4>
+                    <ul>
+                        <li>Favorite genres or artists</li>
+                        <li>Instruments you play</li>
+                        <li>Concert experiences</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🏃</div>
+                <h2 class="hobby-title">Sports & Fitness</h2>
+                <p class="hobby-description">
+                    Staying active and healthy through various physical activities and sports.
+                </p>
+                <div class="hobby-details">
+                    <h4>Activities:</h4>
+                    <ul>
+                        <li>Sports you play or watch</li>
+                        <li>Fitness routines</li>
+                        <li>Outdoor activities</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🎨</div>
+                <h2 class="hobby-title">Creative Projects</h2>
+                <p class="hobby-description">
+                    Exploring creativity through various artistic and creative endeavors.
+                </p>
+                <div class="hobby-details">
+                    <h4>Creative Outlets:</h4>
+                    <ul>
+                        <li>Art or design projects</li>
+                        <li>DIY projects</li>
+                        <li>Photography</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">✈️</div>
+                <h2 class="hobby-title">Travel & Exploration</h2>
+                <p class="hobby-description">
+                    Love discovering new places, cultures, and experiences around the world.
+                </p>
+                <div class="hobby-details">
+                    <h4>Adventures:</h4>
+                    <ul>
+                        <li>Places you've visited</li>
+                        <li>Dream destinations</li>
+                        <li>Travel experiences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-section">
+            <h2 class="gallery-title">Photo Gallery</h2>
+            <div class="gallery-placeholder">
+                <p>Add photos of your hobbies and activities here!</p>
+                <p style="color: #00ffff; margin-top: 10px;">
+                    You can replace this section with actual images of your projects, 
+                    travels, or hobby-related photos.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
