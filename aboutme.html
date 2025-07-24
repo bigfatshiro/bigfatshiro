@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+.text-input:focus {
+            outline: none;
+            border-color: #ffa500;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +64,7 @@
             transform: translateY(-2px);
         }
         
-        <div class="photo-section">
+        .photo-section {
             margin-bottom: 40px;
             text-align: center;
         }
@@ -69,8 +73,6 @@
             width: 100%;
             max-width: 800px;
             height: 300px;
-            background: rgba(255, 165, 0, 0.2);
-            border: 4px solid #ffa500;
             border-radius: 15px;
             margin: 0 auto;
             display: flex;
@@ -83,17 +85,9 @@
             background-repeat: no-repeat;
         }
         
-        .content-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid #ffa500;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .text-input {
             width: 100%;
+            max-width: 800px;
             min-height: 400px;
             background: rgba(0, 0, 0, 0.3);
             border: 2px solid #ffff00;
@@ -104,12 +98,8 @@
             font-size: 18px;
             line-height: 1.6;
             resize: vertical;
-        }
-        
-        .text-input:focus {
-            outline: none;
-            border-color: #ffa500;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+            margin: 0 auto;
+            display: block;
         }
         
         .input-label {
@@ -117,6 +107,9 @@
             font-size: 24px;
             margin-bottom: 15px;
             display: block;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 15px auto;
         }
     </style>
 </head>
@@ -124,7 +117,7 @@
     <div class="container">
         <div class="header">
             <h1 class="page-title">🟠 About Me</h1>
-            <p class="subtitle">You don't know me?</p>
+            <p class="subtitle">Henlo world. I just want to have more cool friends. So I'm trying to be one. By making this site.</p>
             <a href="index.html" class="back-button">← Back to Home</a>
         </div>
         
@@ -132,11 +125,8 @@
             <div class="hero-photo">📷</div>
         </div>
         
-        <div class="content-box">
-            <label class="input-label">About Me</label>
-            <textarea class="text-input" placeholder="I just want to have more cool friends. So I'm trying to be one. By making this site.">
-            </textarea>
-        </div>
+        <label class="input-label">About Me</label>
+        <textarea class="text-input" placeholder="to input something"></textarea>
     </div>
 </body>
 </html>
