@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Collection Service - shiro garden🌱</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Jersey 15", sans-serif;
+            background-color: #000;
+            color: white;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .project-title {
+            font-size: 48px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .project-subtitle {
+            font-size: 24px;
+            color: #ffff00;
+            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .nav-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ffff00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-family: "Jersey 15", sans-serif;
+        }
+        
+        .nav-button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.secondary {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .nav-button.secondary:hover {
+            background: #ff5252;
+        }
+        
+        .project-content {
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 300;
+            line-height: 2.0;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            font-family: "Jersey 15", sans-serif;
+            border-bottom: 2px solid #ffff00;
+            padding-bottom: 10px;
+        }
+        
+        .section-content {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .tech-tag {
+            background: rgba(255, 255, 0, 0.2);
+            color: #ffff00;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #ffff00;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #ff6b6b;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .project-link:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .project-link.github {
+            background: #333;
+        }
+        
+        .project-link.github:hover {
+            background: #555;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .features-list li::before {
+            content: "✦";
+            color: #ffff00;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+        
+        .challenges-section {
+            background: rgba(255, 255, 0, 0.1);
+            border: 2px solid #ffff00;
+        }
+        
+        .results-section {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="project-title">Self Collection Service</h1>
+            <p class="project-subtitle"></p>
+        </div>
+        
+        <div class="nav-buttons">
+            <a href="work-projects.html" class="nav-button">← Back to Projects</a>
+            <a href="index.html" class="nav-button secondary">← Back to Home</a>
+        </div>
+        
+        <div class="project-content">
+            <!-- Project Overview -->
+            <div class="content-section">
+                <h2 class="section-title">Project Overview</h2>
+                <div class="section-content">
+                    <p>
+                        Offer buyers a new, proactive parcel collecting option with smart lockers.
+                    </p>
+                    <p>
+                        This project aims to increase Shopee platform ADO by 6% by converting premium users who prefer to make high-value purchases of furniture and electrical devices offline. <br>
+                      The product covers: <br>
+                      - For buyers: New checkout flow with new channel preselection logic, map displaying, and other UI. <br>
+                      - For 3rd-party logistics partner: New API integration for orders with self-collection service. <br>
+                    </p>
+                </div>
+             
+      
+            </div>
+            
+            <!-- Project Images -->
+            <div class="content-section">
+                <h2 class="section-title">Screenshots & Demo</h2>
+                <div class="image-gallery">
+                    <div class="project-image" style="background-image: url('project-screenshot1.jpg');">
+                        Screenshot 1
+                    </div>
+                    <div class="project-image" style="background-image: url('project-screenshot2.jpg');">
+                        Screenshot 2
+                    </div>
+                    <div class="project-image" style="background-image: url('project-screenshot3.jpg');">
+                        Screenshot 3
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Features -->
+            <div class="content-section">
+                <h2 class="section-title">Key Features</h2>
+                <ul class="features-list">
+                    <li>Feature 1: ###</li>
+                    <li>Feature 2: ###</li>
+                    <li>Feature 3: ###</li>
+                    <li>Feature 4: ###</li>
+                    <li>Feature 5: ###</li>
+                </ul>
+            </div>
+            
+            <!-- Technical Challenges -->
+            <div class="content-section challenges-section">
+                <h2 class="section-title">Challenges & Solutions</h2>
+                <div class="section-content">
+                    <p>
+                        <strong>Challenge:</strong> ###
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> ###
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> ###
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> ###
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Results & Impact -->
+            <div class="content-section results-section">
+                <h2 class="section-title">Results & Impact</h2>
+                <div class="section-content">
+                    <p>
+                        ###
+                    </p>
+                    <p>
+                        ###
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
