@@ -1,23 +1,29 @@
+<!DOCTYPE html>
 <html>
+<head>
     <style>
-     p {
-        background-color: yellow;
-        font-size: 50px;
-        text-align: center;
-      }
-      layer-black {
-          display: block;
-          padding: 10px;
-          background: black;
-      }
-
-      layer-yellow {
-          display: block;
-          padding: 10px;
-          background: yellow;
-      }
-     .meap-photo {
-          width: 100%;
+        p {
+            background-color: yellow;
+            font-size: 50px;
+            text-align: center;
+        }
+        .layer-black {
+            display: block;
+            padding: 10px;
+            background: black;
+        }
+        .layer-yellow {
+            display: block;
+            padding: 10px;
+            background: yellow;
+        }
+        .layer-brown {
+            display: block;
+            padding: 10px;
+            background: brown;
+        }
+        .meap-photo {
+            width: 100%;
             max-width: 1000px;
             height: 800px;
             margin: 0 auto;
@@ -29,7 +35,7 @@
             background-size: cover;
             background-position: 100% 100%;
         }
-         .seemore-button {
+        .seemore-button {
             display: inline-block;
             padding: 30px 60px;
             background: #ffff00;
@@ -38,6 +44,9 @@
             border-radius: 8px;
             font-weight: bold;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
         }
         .seemore-button:hover {
             background: #e6e600;
@@ -45,34 +54,68 @@
         }
         img {
             width: 30%;
+            margin: 5px;
+        }
+        .gallery {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .gallery.show {
+            display: block;
+        }
+        .gallery img {
+            width: 45%;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
     </style>
-  <body>
+</head>
+<body>
     <p>🐾 This is meap 🐾</p>
-
-    <layer-brown>
-        <layer-yellow>
-            <layer-black>
-                <layer-yellow>
+    <div class="layer-brown">
+        <div class="layer-yellow">
+            <div class="layer-black">
+                <div class="layer-yellow">
                     <div class="meap-photo"></div>
-                  </div>
-                </layer-black>
-            </layer-yellow>
-        </layer-black>
-    </layer-yellow>
-        <div style="text-align: center; margin-top: 50px;">
-        <a class="seemore-button">See more of meap</a>
+                </div>
+            </div>
         </div>
-    <img src="meap2.jpeg">
-    <img src="meap4.jpeg">
-    <img src="meap5.jpeg">
-    <img src="meap6.jpeg">
+    </div>
     
     <div style="text-align: center; margin-top: 50px;">
-        <a class="seemore-button">Find meap</a>
+        <button class="seemore-button" onclick="toggleGallery()">See more of meap</button>
     </div>
-    <img src="findmeap1.png">
+    
+    <!-- Hidden gallery that will show when button is clicked -->
+    <div id="meapGallery" class="gallery">
+        <h2 style="color: #333; margin: 20px 0;">More Photos of Meap! 📸</h2>
+        <img src="meap2.jpeg" alt="Meap photo 2">
+        <img src="IMG_3246.jpeg" alt="Meap photo 3">
+        <img src="IMG_2546.jpeg" alt="Meap photo 4">
+        <img src="IMG_2507.jpeg" alt="Meap photo 5">
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px;">
+        <button class="seemore-button">Find meap</button>
+    </div>
+    <img src="findmeap1.png" alt="Find meap game">
 
-  </body>
+    <script>
+        function toggleGallery() {
+            const gallery = document.getElementById('meapGallery');
+            const button = document.querySelector('.seemore-button');
+            
+            if (gallery.classList.contains('show')) {
+                gallery.classList.remove('show');
+                button.textContent = 'See more of meap';
+            } else {
+                gallery.classList.add('show');
+                button.textContent = 'Hide meap photos';
+            }
+        }
+    </script>
+</body>
 </html>
         
