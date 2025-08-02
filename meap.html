@@ -5,6 +5,10 @@
           padding: 10px;
           background: black;
       }
+    p {
+        background-color: yellow;
+        font-size: 50px;
+      }
       layer-yellow {
           display: block;
           padding: 10px;
@@ -24,6 +28,20 @@
             background-size: cover;
             background-position: center;
         }
+         .seemore-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ffff00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .seemore-button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
     </style>
   <body>
     <h1>Hi all!</h1>
@@ -39,7 +57,7 @@
             </layer-yellow>
         </layer-black>
     </layer-yellow>
-
+    <div class = "seemore-button"></div>
     </body>
 </html>
         
