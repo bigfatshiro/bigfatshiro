@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -60,14 +61,24 @@
             text-align: center;
             margin-top: 30px;
         }
-        .gallery.show {
-            display: block;
-        }
         .gallery img {
             width: 45%;
             margin: 10px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* CSS-only toggle functionality */
+        #gallery-toggle {
+            display: none;
+        }
+        #gallery-toggle:checked + .seemore-button + .gallery {
+            display: block;
+        }
+        #gallery-toggle:checked + .seemore-button::after {
+            content: " (Click again to hide)";
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
@@ -84,37 +95,22 @@
     </div>
     
     <div style="text-align: center; margin-top: 50px;">
-        <button class="seemore-button" onclick="toggleGallery()">See more of meap</button>
-    </div>
-    
-    <!-- Hidden gallery that will show when button is clicked -->
-    <div id="meapGallery" class="gallery">
-        <h2 style="color: #333; margin: 20px 0;">More Photos of Meap! 📸</h2>
-        <img src="meap2.jpeg" alt="Meap photo 2">
-        <img src="IMG_3246.jpeg" alt="Meap photo 3">
-        <img src="IMG_2546.jpeg" alt="Meap photo 4">
-        <img src="IMG_2507.jpeg" alt="Meap photo 5">
+        <input type="checkbox" id="gallery-toggle" />
+        <label for="gallery-toggle" class="seemore-button">See more of meap</label>
+        
+        <!-- Hidden gallery that will show when checkbox is checked -->
+        <div class="gallery">
+            <h2 style="color: #333; margin: 20px 0;"> meap nè /h2>
+            <img src="meap2.jpeg" alt="Meap photo 2">
+            <img src="IMG_3246.jpeg" alt="Meap photo 3">
+            <img src="IMG_2546.jpeg" alt="Meap photo 4">
+            <img src="IMG_2507.jpeg" alt="Meap photo 5">
+        </div>
     </div>
     
     <div style="text-align: center; margin-top: 50px;">
         <button class="seemore-button">Find meap</button>
     </div>
     <img src="findmeap1.png" alt="Find meap game">
-
-    <script>
-        function toggleGallery() {
-            const gallery = document.getElementById('meapGallery');
-            const button = document.querySelector('.seemore-button');
-            
-            if (gallery.classList.contains('show')) {
-                gallery.classList.remove('show');
-                button.textContent = 'See more of meap';
-            } else {
-                gallery.classList.add('show');
-                button.textContent = 'Hide meap photos';
-            }
-        }
-    </script>
 </body>
 </html>
-        
