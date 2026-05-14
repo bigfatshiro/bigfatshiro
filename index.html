@@ -1,392 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shiro garden🌱</title>
-     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            height: 100vh;
-            font-family: "Jersey 15", sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        
-        .main-content {
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-       /* Pacman Animation */
-        .pacman {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #ffff00;
-            animation: pacman-move 15s linear infinite, pacman-chomp 0.5s infinite;
-            z-index: 1;
-        }
-        
-        .pacman::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border: 20px solid #000;
-            border-right: 20px solid transparent;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            animation: pacman-mouth 0.5s infinite;
-        }
-        
-        /* Pacman Movement Path - Counter-clockwise */
-        @keyframes pacman-move {
-            0% { 
-                left: -50px; 
-                top: 20%; 
-                transform: rotate(180deg);
-            }
-            25% { 
-                left: -50px; 
-                top: 80%; 
-                transform: rotate(180deg);
-            }
-            25.1% { 
-                left: -50px; 
-                top: 80%; 
-                transform: rotate(90deg);
-            }
-            50% { 
-                left: calc(100% - 40px); 
-                top: 80%; 
-                transform: rotate(90deg);
-            }
-            50.1% { 
-                left: calc(100% - 40px); 
-                top: 80%; 
-                transform: rotate(0deg);
-            }
-            75% { 
-                left: calc(100% - 40px); 
-                top: 20%; 
-                transform: rotate(0deg);
-            }
-            75.1% { 
-                left: calc(100% - 40px); 
-                top: 20%; 
-                transform: rotate(270deg);
-            }
-            100% { 
-                left: -50px; 
-                top: 20%; 
-                transform: rotate(270deg);
-            }
-        }
-        
-        /* Pacman Mouth Animation */
-        @keyframes pacman-mouth {
-            0%, 100% {
-                border-top: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-            }
-            50% {
-                border-top: 20px solid transparent;
-                border-bottom: 20px solid transparent;
-            }
-        }
-        
-        /* Dots for Pacman to "eat" */
-        .dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #ffff00;
-            border-radius: 50%;
-            animation: dot-fade 15s linear infinite;
-        }
-        
-        @keyframes dot-fade {
-            0%, 100% { opacity: 1; }
-            6.67%, 93.33% { opacity: 0; }
-        }
-        
-        .dot:nth-child(2) { left: 10%; top: 30%; animation-delay: -1s; }
-        .dot:nth-child(3) { left: 10%; top: 40%; animation-delay: -2s; }
-        .dot:nth-child(4) { left: 10%; top: 50%; animation-delay: -3s; }
-        .dot:nth-child(5) { left: 10%; top: 60%; animation-delay: -4s; }
-        .dot:nth-child(6) { left: 10%; top: 70%; animation-delay: -5s; }
-        .dot:nth-child(7) { left: 20%; top: 80%; animation-delay: -6s; }
-        .dot:nth-child(8) { left: 30%; top: 80%; animation-delay: -7s; }
-        .dot:nth-child(9) { left: 40%; top: 80%; animation-delay: -8s; }
-        .dot:nth-child(10) { left: 50%; top: 80%; animation-delay: -9s; }
-        .dot:nth-child(11) { left: 60%; top: 80%; animation-delay: -10s; }
-        .dot:nth-child(12) { left: 70%; top: 80%; animation-delay: -11s; }
-        .dot:nth-child(13) { left: 80%; top: 80%; animation-delay: -12s; }
-        .dot:nth-child(14) { left: 90%; top: 70%; animation-delay: -13s; }
-        .dot:nth-child(15) { left: 90%; top: 60%; animation-delay: -14s; }
-        .dot:nth-child(16) { left: 90%; top: 50%; animation-delay: -15s; }
-        .dot:nth-child(17) { left: 90%; top: 40%; animation-delay: -1.5s; }
-        .dot:nth-child(18) { left: 90%; top: 30%; animation-delay: -2.5s; }
-        .dot:nth-child(19) { left: 80%; top: 20%; animation-delay: -3.5s; }
-        .dot:nth-child(20) { left: 70%; top: 20%; animation-delay: -4.5s; }
-        .dot:nth-child(21) { left: 60%; top: 20%; animation-delay: -5.5s; }
-        .dot:nth-child(22) { left: 50%; top: 20%; animation-delay: -6.5s; }
-        .dot:nth-child(23) { left: 40%; top: 20%; animation-delay: -7.5s; }
-        .dot:nth-child(24) { left: 30%; top: 20%; animation-delay: -8.5s; }
-        .dot:nth-child(25) { left: 20%; top: 20%; animation-delay: -9.5s; }
-        .dot:nth-child(26) { left: 10%; top: 20%; animation-delay: -10.5s; }
-        .dot:nth-child(27) { left: 10%; top: 30%; animation-delay: -11.5s; }
-        
-        /* Ghost Navigation Menu - Multiple Position Options */
-        .ghost-menu {
-            position: fixed;
-            /* OPTION 1: Center of page (current) */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            
-            /* OPTION 2: Bottom of page - uncomment these 3 lines and comment the 3 above */
-            /* bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%); */
-            
-            /* OPTION 3: Top of page - uncomment these 3 lines and comment the first 3 */
-            /* top: 40px;
-            left: 50%;
-            transform: translateX(-50%); */
-            
-            /* OPTION 4: Lower center (75% down) - uncomment these 3 lines and comment the first 3 */
-            /* top: 75%;
-            left: 50%;
-            transform: translate(-50%, -50%); */
-            
-            /* OPTION 5: Upper center (25% down) - uncomment these 3 lines and comment the first 3 */
-            /* top: 25%;
-            left: 50%;
-            transform: translate(-50%, -50%); */
-            
-            display: flex;
-            gap: 40px;
-            z-index: 15;
-        }
-        
-        .ghost-nav {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .ghost-nav:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Individual ghost colors - All White Background */
-        .ghost-square.red { 
-            background-color: #ffffff; 
-            background-image: url('red_ghost.jpg');
-        }
-        .ghost-square.pink { 
-            background-color: #ffffff; 
-            background-image: url('pink_ghost.jpg');
-        }
-        .ghost-square.cyan { 
-            background-color: #ffffff; 
-            background-image: url('blue_ghost.jpg');
-        }
-        .ghost-square.orange { 
-            background-color: #ffffff; 
-            background-image: url('orange_ghost.jpg');
-        }
-        
-        /* Clean ghost squares with white background */
-        .ghost-square {
-            width: 120px;
-            height: 120px;
-            background-color: #ffffff;
-            background-size: 90%;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 15px;
-            border: 4px solid #ffff00;
-            box-shadow: 0 0 25px rgba(255, 255, 0, 0.6);
-            transition: all 0.3s ease;
-            margin-bottom: 15px;
-        }
-        
-        .ghost-square:hover {
-            box-shadow: 0 0 40px rgba(255, 255, 0, 0.9);
-            border-color: #fff;
-            transform: scale(1.1);
-        }
-        
-        .ghost-label {
-            color: #ffff00;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            transition: color 0.3s ease;
-        }
-        
-        .ghost-nav:hover .ghost-label {
-            color: #fff;
-        }
-        
-        /* Optional: Add overlay for better text readability */
-        .main-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        /* Content area with proper z-index */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            padding: 40px;
-        }
-        
-        /* Text Color Classes */
-        .text-white { color: white; }
-        .text-black { color: black; }
-        .text-gray { color: #666; }
-        .text-light-gray { color: #999; }
-        .text-dark-gray { color: #333; }
-        
-        /* Color Variations */
-        .text-red { color: #e74c3c; }
-        .text-blue { color: #3498db; }
-        .text-green { color: #27ae60; }
-        .text-purple { color: #9b59b6; }
-        .text-orange { color: #f39c12; }
-        .text-pink { color: #e91e63; }
-        .text-yellow { color: #f1c40f; }
-        .text-teal { color: #1abc9c; }
-        
-        /* Custom Green Shades (matching your menu) */
-        .text-light-green { color: #2ecc71; }
-        .text-forest-green { color: #27ae60; }
-        .text-dark-green { color: #1e8449; }
-        
-        /* Text with Background for Readability */
-        .text-with-bg {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        
-        .text-with-light-bg {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            color: #333;
-        }
-        
-        /* Example Text Styles */
-        .title-style {
-            font-size: 48px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .subtitle-style {
-            font-size: 24px;
-            color: #2ecc71;
-            margin-bottom: 20px;
-        }
-        
-        .body-style {
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra — Handcrafted Ceramics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --clay: #B8845A;
+    --clay-dark: #8B5E38;
+    --earth: #3D2B1F;
+    --earth-light: #6B4C38;
+    --sage: #7A8C72;
+    --linen: #E8DFD0;
+    --stone: #C4B5A0;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--cream);
+    color: var(--earth);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    mix-blend-mode: multiply;
+  }
+ 
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--earth);
+    text-decoration: none;
+  }
+ 
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+ 
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--earth);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+ 
+  .nav-links a:hover { opacity: 1; }
+ 
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+ 
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transform: scale(1.05);
+    animation: subtleZoom 12s ease-out forwards;
+  }
+ 
+  @keyframes subtleZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1); }
+  }
+ 
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 4rem 5rem;
+    background: var(--warm-white);
+    position: relative;
+  }
+ 
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+ 
+  .hero-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--earth);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+ 
+  .hero-heading em {
+    font-style: italic;
+    color: var(--clay);
+  }
+ 
+  .hero-sub {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--earth-light);
+    max-width: 340px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s ease forwards;
+  }
+ 
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--earth);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    align-self: flex-start;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s ease forwards;
+  }
+ 
+  .btn-primary:hover {
+    background: var(--clay);
+    color: #fff;
+  }
+ 
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s ease forwards;
+  }
+ 
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: var(--stone);
+    animation: scrollLine 2s 2s infinite;
+    transform-origin: top;
+  }
+ 
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* ── MARQUEE STRIP ── */
+  .marquee-strip {
+    background: var(--earth);
+    color: var(--cream);
+    padding: 0.85rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+ 
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 25s linear infinite;
+  }
+ 
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    padding: 0 2.5rem;
+    color: var(--stone);
+  }
+ 
+  .marquee-track span.dot {
+    color: var(--clay);
+    font-style: normal;
+  }
+ 
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+ 
+  /* ── SECTION SHARED ── */
+  section { position: relative; }
+ 
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1.5rem;
+  }
+ 
+  /* ── STORY SECTION ── */
+  .story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+  }
+ 
+  .story-text {
+    padding: 7rem 5rem 7rem 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--warm-white);
+  }
+ 
+  .story-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--earth);
+    margin-bottom: 2rem;
+  }
+ 
+  .story-body {
+    font-size: 0.92rem;
+    line-height: 2;
+    color: var(--earth-light);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+ 
+  .story-quote {
+    border-left: 2px solid var(--clay);
+    padding-left: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--clay-dark);
+    line-height: 1.5;
+    max-width: 380px;
+  }
+ 
+  .story-images {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+  }
+ 
+  .story-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.8);
+    transition: filter 0.4s;
+  }
+ 
+  .story-images img:hover { filter: saturate(1); }
+ 
+  /* ── PRODUCTS GRID ── */
+  .products {
+    padding: 7rem 6rem;
+    background: var(--cream);
+  }
+ 
+  .products-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+ 
+  .products-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 300;
+    color: var(--earth);
+  }
+ 
+  .view-all {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+    text-decoration: none;
+    border-bottom: 1px solid var(--clay);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+ 
+  .view-all:hover { color: var(--clay-dark); }
+ 
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+ 
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+ 
+  .product-card:nth-child(2) { margin-top: 3rem; }
+ 
+  .product-thumb {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--linen);
+    position: relative;
+  }
+ 
+  .product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.75);
+    transition: transform 0.6s ease, filter 0.4s;
+  }
+ 
+  .product-card:hover .product-thumb img {
+    transform: scale(1.04);
+    filter: saturate(1);
+  }
+ 
+  .product-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--earth);
+    color: var(--cream);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+  }
+ 
+  .product-info {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+ 
+  .product-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--earth);
+  }
+ 
+  .product-desc {
+    font-size: 0.78rem;
+    color: var(--stone);
+    margin-top: 0.2rem;
+  }
+ 
+  .product-price {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--clay);
+  }
+ 
+  /* ── PROCESS SECTION ── */
+  .process {
+    background: var(--earth);
+    padding: 7rem 6rem;
+    color: var(--cream);
+  }
+ 
+  .process-label { color: var(--stone); }
+ 
+  .process-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3.8rem);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 4rem;
+    max-width: 500px;
+    line-height: 1.2;
+  }
+ 
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+ 
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--clay);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+ 
+  .step-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+ 
+  .step-body {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--stone);
+  }
+ 
+  .step-line {
+    width: 30px;
+    height: 1px;
+    background: var(--clay);
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+ 
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 7rem 6rem;
+    background: var(--linen);
+    overflow: hidden;
+  }
+ 
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+ 
+  .testimonials-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 300;
+    color: var(--earth);
+  }
+ 
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+ 
+  .testimonial-card {
+    background: var(--warm-white);
+    padding: 2.5rem;
+    position: relative;
+  }
+ 
+  .testimonial-card:nth-child(2) { margin-top: 2rem; }
+ 
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 0.6;
+    color: var(--clay);
+    opacity: 0.2;
+    margin-bottom: 1rem;
+    display: block;
+  }
+ 
+  .testimonial-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--earth);
+    margin-bottom: 2rem;
+  }
+ 
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+ 
+  .author-initial {
+    width: 40px;
+    height: 40px;
+    background: var(--clay);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 300;
+    flex-shrink: 0;
+  }
+ 
+  .author-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--earth);
+  }
+ 
+  .author-city {
+    font-size: 0.75rem;
+    color: var(--stone);
+    margin-top: 0.1rem;
+  }
+ 
+  .stars {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    display: flex;
+    gap: 2px;
+    color: var(--clay);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+ 
+  /* ── ABOUT BAND ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+ 
+  .about-image {
+    overflow: hidden;
+    position: relative;
+  }
+ 
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.75);
+  }
+ 
+  .about-text {
+    padding: 6rem 5rem;
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+ 
+  .about-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 300;
+    color: var(--earth);
+    margin-bottom: 2rem;
+    line-height: 1.15;
+  }
+ 
+  .about-body {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--earth-light);
+    max-width: 400px;
+    margin-bottom: 2rem;
+  }
+ 
+  .about-signature {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--clay);
+    margin-top: 1rem;
+  }
+ 
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--earth);
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+ 
+  .contact-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+ 
+  .contact-heading em {
+    font-style: italic;
+    color: var(--clay);
+  }
+ 
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+ 
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+ 
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+ 
+  .form-field label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+ 
+  .form-field input,
+  .form-field textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 300;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+ 
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--clay);
+  }
+ 
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: rgba(196,181,160,0.4);
+  }
+ 
+  .btn-submit {
+    align-self: flex-start;
+    padding: 1rem 2.5rem;
+    background: var(--clay);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 0.5rem;
+  }
+ 
+  .btn-submit:hover { background: var(--clay-dark); }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 2rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+ 
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+ 
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--stone);
+    opacity: 0.5;
+  }
+ 
+  .footer-social {
+    display: flex;
+    gap: 1.5rem;
+  }
+ 
+  .footer-social a {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+ 
+  .footer-social a:hover { opacity: 1; }
+ 
+  /* ── PARALLAX DECORATION ── */
+  .decoration-line {
+    position: absolute;
+    width: 1px;
+    background: var(--clay);
+    opacity: 0.2;
+    top: 0;
+    height: 100%;
+  }
+ 
+  /* ── PLACEHOLDER IMAGE STYLES ── */
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--stone);
+    letter-spacing: 0.05em;
+  }
+ 
+  .placeholder-hero { background: linear-gradient(135deg, #C4A882 0%, #8B6545 40%, #5C3D25 100%); min-height: 100vh; }
+  .placeholder-story-1 { background: linear-gradient(160deg, #D4B896 0%, #9B7355 100%); }
+  .placeholder-story-2 { background: linear-gradient(160deg, #A07850 0%, #6B4C30 100%); }
+  .placeholder-about { background: linear-gradient(150deg, #C8A878 0%, #7A5535 100%); min-height: 80vh; }
+  .placeholder-p1 { background: linear-gradient(170deg, #DDCABB 0%, #9B7D60 100%); aspect-ratio: 3/4; }
+  .placeholder-p2 { background: linear-gradient(170deg, #C9B5A0 0%, #8B6A50 100%); aspect-ratio: 3/4; }
+  .placeholder-p3 { background: linear-gradient(170deg, #D5C2AE 0%, #A07860 100%); aspect-ratio: 3/4; }
+</style>
 </head>
 <body>
-    <div class="main-content">
-        <!-- Pacman Animation -->
-        <div class="pacman"></div>
-        
-        <!-- Dots for Pacman to eat -->
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        
-        <div class="content-wrapper">
-            <!-- Example text with good contrast on black background -->
-            <h1 class="text-white title-style">ân's site</h1>
-            <h2 class="text-light-green subtitle-style">still a work in progress..</h2>            
-        </div>
-        
-        <!-- Ghost Navigation Menu -->
-        <div class="ghost-menu">
-            <div class="ghost-nav" onclick="window.location.href='work-projects.html'">
-                <div class="ghost-square red"></div>
-                <div class="ghost-label">Work Projects</div>
-            </div>
-            
-            <div class="ghost-nav" onclick="window.location.href='writings.html'">
-                <div class="ghost-square pink"></div>
-                <div class="ghost-label">Opinions</div>
-            </div>
-            
-            <div class="ghost-nav" onclick="window.location.href='hobbies.html'">
-                <div class="ghost-square cyan"></div>
-                <div class="ghost-label">Hobbies</div>
-            </div>
-            
-            <div class="ghost-nav" onclick="window.location.href='aboutme.html'">
-                <div class="ghost-square orange"></div>
-                <div class="ghost-label">About Me</div>
-            </div>
-        </div>
+ 
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Terra</a>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image">
+    <div class="placeholder-hero img-placeholder">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.3">
+        <ellipse cx="40" cy="55" rx="22" ry="12" stroke="#fff" stroke-width="1"/>
+        <path d="M18 55 Q18 20 40 15 Q62 20 62 55" stroke="#fff" stroke-width="1" fill="none"/>
+        <ellipse cx="40" cy="15" rx="12" ry="5" stroke="#fff" stroke-width="1"/>
+        <line x1="25" y1="38" x2="55" y2="38" stroke="#fff" stroke-width="0.5" opacity="0.5"/>
+      </svg>
     </div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Handcrafted in small batches</p>
+    <h1 class="hero-heading">Born from<br><em>earth,</em><br>shaped by<br>hands.</h1>
+    <p class="hero-sub">Each piece is a quiet conversation between clay and maker — functional pottery that carries the warmth of the hands that formed it.</p>
+    <a href="#shop" class="btn-primary">Explore the Collection</a>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Handmade Pottery</span><span class="dot">✦</span>
+    <span>Small Batch</span><span class="dot">✦</span>
+    <span>Earth & Fire</span><span class="dot">✦</span>
+    <span>Unique Pieces</span><span class="dot">✦</span>
+    <span>Made with Presence</span><span class="dot">✦</span>
+    <span>Slow Craft</span><span class="dot">✦</span>
+    <span>Functional Art</span><span class="dot">✦</span>
+    <span>Handmade Pottery</span><span class="dot">✦</span>
+    <span>Small Batch</span><span class="dot">✦</span>
+    <span>Earth & Fire</span><span class="dot">✦</span>
+    <span>Unique Pieces</span><span class="dot">✦</span>
+    <span>Made with Presence</span><span class="dot">✦</span>
+    <span>Slow Craft</span><span class="dot">✦</span>
+    <span>Functional Art</span><span class="dot">✦</span>
+  </div>
+</div>
+ 
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-text">
+    <p class="section-label">The Philosophy</p>
+    <h2 class="story-heading">A quiet rebellion<br>against the hurried<br><em style="font-style:italic; color:var(--clay)">world.</em></h2>
+    <p class="story-body">Terra ceramics is a celebration of slowness. In an age of mass production, every cup, bowl, and vessel that leaves this studio carries the mark of unhurried hands and undivided attention. The ancient craft of pottery grounds us — a reminder that there is beauty in imperfection, and meaning in the making.</p>
+    <blockquote class="story-quote">"A moment of stillness held in clay."</blockquote>
+  </div>
+  <div class="story-images">
+    <div class="placeholder-story-1 img-placeholder" style="color: rgba(255,255,255,0.3); font-size: 0.85rem;">potter's hands on wheel</div>
+    <div class="placeholder-story-2 img-placeholder" style="color: rgba(255,255,255,0.3); font-size: 0.85rem;">studio & tools</div>
+  </div>
+</section>
+ 
+<!-- PRODUCTS -->
+<section class="products" id="shop">
+  <div class="products-header">
+    <div>
+      <p class="section-label">The Collection</p>
+      <h2 class="products-title">Each piece,<br><em style="font-style:italic; color:var(--clay)">one of a kind.</em></h2>
+    </div>
+    <a href="#" class="view-all">View all pieces</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-thumb">
+        <div class="placeholder-p1 img-placeholder" style="color: rgba(100,70,50,0.5); font-size: 0.8rem;">stoneware mug</div>
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Morning Mug</div>
+          <div class="product-desc">Hand-thrown stoneware · 300ml</div>
+        </div>
+        <div class="product-price">€48</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb">
+        <div class="product-tag">New</div>
+        <div class="placeholder-p2 img-placeholder" style="color: rgba(100,70,50,0.5); font-size: 0.8rem;">incense holder</div>
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Incense Holder</div>
+          <div class="product-desc">Textured earthenware · Handbuilt</div>
+        </div>
+        <div class="product-price">€36</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb">
+        <div class="placeholder-p3 img-placeholder" style="color: rgba(100,70,50,0.5); font-size: 0.8rem;">serving bowl</div>
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Serving Bowl</div>
+          <div class="product-desc">Glazed stoneware · 22cm wide</div>
+        </div>
+        <div class="product-price">€72</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROCESS -->
+<section class="process">
+  <p class="section-label process-label">How it's made</p>
+  <h2 class="process-heading">Four steps.<br>Infinite patience.</h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-line"></div>
+      <div class="step-name">Sourcing the clay</div>
+      <div class="step-body">Responsibly sourced stoneware and earthenware clays, selected for texture, plasticity, and character.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-line"></div>
+      <div class="step-name">Throwing & handbuilding</div>
+      <div class="step-body">Each form is shaped at the wheel or by hand, in small batches that allow full attention to every piece.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-line"></div>
+      <div class="step-name">Drying & bisque fire</div>
+      <div class="step-body">Pieces dry slowly to prevent cracking, then go through the first kiln firing to harden the clay body.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-line"></div>
+      <div class="step-name">Glaze & final fire</div>
+      <div class="step-body">Handmixed glazes are applied and the piece fires a second time, where the magic of transformation happens.</div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image">
+    <div class="placeholder-about img-placeholder" style="color: rgba(255,255,255,0.25); font-size: 0.85rem;">portrait of the maker</div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">The maker</p>
+    <h2 class="about-heading">A studio rooted in<br><em style="font-style:italic; color:var(--clay)">wonder.</em></h2>
+    <p class="about-body">Terra is a small ceramics studio run by a single pair of hands. All pieces are thrown on the wheel or built by hand, in small batches that allow complete attention to each work. The love of clay began at a summer arts camp — a first touch that became a lifelong conversation.</p>
+    <p class="about-body">"Learning ceramics is a blissful and never-ending voyage. There is always more to experiment with, more to discover. That is what I love most about it — it is a constant journey."</p>
+    <div class="about-signature">— with love</div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <p class="section-label" style="color:var(--stone)">Get in touch</p>
+    <h2 class="contact-heading">Let's start a<br><em>conversation.</em></h2>
+  </div>
+  <form class="contact-form" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-field">
+        <label>First name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Subject</label>
+      <input type="text" placeholder="Custom order, wholesale, press…">
+    </div>
+    <div class="form-field">
+      <label>Message</label>
+      <textarea rows="5" placeholder="Tell me about your piece…"></textarea>
+    </div>
+    <button class="btn-submit" type="submit">Send message</button>
+  </form>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Terra</span>
+  <span class="footer-copy">© 2025 Terra Ceramics. All rights reserved.</span>
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">Pinterest</a>
+    <a href="#">Facebook</a>
+  </div>
+</footer>
+ 
 </body>
 </html>
